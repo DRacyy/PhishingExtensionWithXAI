@@ -1,0 +1,324 @@
+/* History page specific styles */
+
+/* Import base styles (in production this would be handled by a bundler) */
+/* @import 'base.css'; */
+
+/* History page container - replaces .container in the old CSS */
+.history-page {
+  width: 100%;
+}
+
+.history-page .main-content {
+  width: 100%;
+  background-color: transparent;
+}
+
+/* Stats section */
+.history-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.history-stat-card {
+  background: var(--card-bg);
+  backdrop-filter: var(--backdrop-filter);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--card-border-color);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.history-stat-info h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.history-stat-info p {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* History sync prompt */
+.history-sync-prompt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 9999px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-bottom: 24px;
+}
+
+.history-sync-prompt i {
+  width: 18px;
+  height: 18px;
+  color: #a78bfa;
+}
+
+.history-sync-prompt:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Main history card */
+.history-card {
+  margin-bottom: 2rem;
+}
+
+/* Filters row */
+.history-filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+  height: 50px;
+}
+
+.history-search {
+  position: relative;
+  flex: 1;
+  min-width: 250px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.history-search input {
+  width: 100%;
+  height: 100%;
+  padding: 0 1rem 0 2.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background: var(--input-bg);
+  font-size: 0.875rem;
+  color: var(--text-primary);
+}
+
+.history-search svg {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: var(--text-secondary);
+  pointer-events: none;
+}
+
+.history-date-range {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 100%;
+}
+
+.history-date-range input {
+  height: 100%;
+  padding: 0 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background: var(--input-bg);
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  width: 130px;
+}
+
+.history-date-range span {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.history-selects {
+  display: flex;
+  gap: 0.5rem;
+  height: 100%;
+}
+
+.history-selects select {
+  height: 100%;
+  padding: 0 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background: var(--input-bg);
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  min-width: 120px;
+}
+
+/* Action buttons */
+.history-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  height: 40px;
+}
+
+.history-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 0 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background: var(--input-bg);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.history-action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.history-action-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.dark .history-action-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* History table */
+.history-table-wrapper {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.history-table th {
+  text-align: left;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.02);
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dark .history-table th {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Empty state */
+.history-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.history-empty-icon {
+  width: 3rem;
+  height: 3rem;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  color: var(--text-secondary);
+}
+
+.dark .history-empty-icon {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.history-empty h3 {
+  color: var(--text-primary);
+  margin: 0 0 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.history-empty p {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* Pagination */
+.history-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.history-page-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background: var(--input-bg);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.history-page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.history-page-btn:not(:disabled):hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.dark .history-page-btn:not(:disabled):hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .history-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .history-filters {
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+  }
+
+  .history-date-range {
+    flex-direction: column;
+  }
+
+  .history-selects {
+    flex-direction: column;
+  }
+
+  .history-actions {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .history-action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+} 

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShieldScan - Security Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="light">
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-container">
+                <div class="header-content">
+                    <div class="logo-section">
+                        <div class="logo">
+                            <div class="logo-inner">
+                                <div class="logo-dot"></div>
+                            </div>
+                        </div>
+                        <h1 class="app-title">ShieldScan</h1>
+                    </div>
+
+                    <div class="header-actions">
+                        <nav class="nav">
+                            <button class="nav-button active" data-tab="settings">Settings</button>
+                            <button class="nav-button" data-tab="history">History</button>
+                        </nav>
+                        <button class="theme-toggle" id="themeToggle">
+                            <i data-lucide="moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Settings Tab -->
+            <div id="settings" class="tab-content active">
+                <div class="settings-container">
+                    <!-- Account Section -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="section-title">
+                                <div class="icon-wrapper purple">
+                                    <i data-lucide="user"></i>
+                                </div>
+                                <div>
+                                    <h2 class="title">Account</h2>
+                                    <p class="subtitle">Manage your account settings and sync preferences</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="status-badge success">
+                                <div class="badge">
+                                    <div class="status-dot"></div>
+                                    Signed in
+                                </div>
+                                <span class="email">danieladnan33@gmail.com</span>
+                            </div>
+
+                            <div class="info-grid">
+                                <div class="info-row">
+                                    <span class="label">Sync status:</span>
+                                    <span class="value success">Data synced across devices</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Last sync:</span>
+                                    <span class="value">6 minutes ago</span>
+                                </div>
+                            </div>
+
+                            <div class="button-group">
+                                <button class="button secondary">
+                                    <i data-lucide="refresh-cw"></i>
+                                    Sync Now
+                                </button>
+                                <button class="button danger">
+                                    <i data-lucide="log-out"></i>
+                                    Sign Out
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Protection Features -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="title">
+                                <i data-lucide="shield" class="title-icon"></i>
+                                Protection Features
+                            </h2>
+                            <p class="subtitle">Configure your security protection settings</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-info">
+                                        <div class="icon-wrapper blue">
+                                            <i data-lucide="shield"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="feature-title">URL Analysis</h3>
+                                            <p class="feature-description">Check URLs against phishing databases</p>
+                                        </div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+
+                                <div class="feature-item">
+                                    <div class="feature-info">
+                                        <div class="icon-wrapper purple">
+                                            <i data-lucide="brain"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="feature-title">ML Detection</h3>
+                                            <p class="feature-description">Detect phishing with machine learning</p>
+                                        </div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+
+                                <div class="feature-item">
+                                    <div class="feature-info">
+                                        <div class="icon-wrapper orange">
+                                            <i data-lucide="bell"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="feature-title">Notifications</h3>
+                                            <p class="feature-description">Get alerts when threats are detected</p>
+                                        </div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Behavior Settings -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="title">Behavior</h2>
+                            <p class="subtitle">Customize how ShieldScan behaves</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="checkbox-group">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Automatically scan pages when loaded
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Show the number of blocked threats on the toolbar icon
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Server Options -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="title">
+                                <i data-lucide="server" class="title-icon"></i>
+                                Server Options
+                            </h2>
+                            <p class="subtitle">Configure server connection settings</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label class="form-label" for="server-url">Analysis server URL</label>
+                                <input type="text" id="server-url" class="form-input monospace" value="http://localhost:5000">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="api-key">
+                                    <i data-lucide="key"></i>
+                                    API Key (if required)
+                                </label>
+                                <input type="password" id="api-key" class="form-input monospace" placeholder="Enter your API key">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Whitelist -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="title">
+                                <i data-lucide="shield" class="title-icon green"></i>
+                                Whitelist
+                            </h2>
+                            <p class="subtitle">List of websites for which no scanning will take place</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label class="form-label" for="whitelist">Trusted domains</label>
+                                <textarea id="whitelist" class="form-textarea monospace" rows="6" placeholder="Enter domain names, one per line (e.g. example.com)"></textarea>
+                                <p class="form-help">Add trusted websites that should be excluded from scanning. Enter one domain per line.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Tab -->
+            <div id="history" class="tab-content">
+                <div class="history-container">
+                    <!-- User Status -->
+                    <div class="status-section">
+                        <div class="badge success">
+                            <div class="status-dot"></div>
+                            Signed in as danieladnan33@gmail.com
+                        </div>
+                    </div>
+
+                    <!-- Statistics Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-content">
+                                <div class="icon-wrapper blue">
+                                    <i data-lucide="search"></i>
+                                </div>
+                                <div>
+                                    <p class="stat-number">1874</p>
+                                    <p class="stat-label">Sites Scanned</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-content">
+                                <div class="icon-wrapper red">
+                                    <i data-lucide="alert-triangle"></i>
+                                </div>
+                                <div>
+                                    <p class="stat-number">535</p>
+                                    <p class="stat-label">Threats Detected</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-content">
+                                <div class="icon-wrapper green">
+                                    <i data-lucide="calendar"></i>
+                                </div>
+                                <div>
+                                    <p class="stat-number">6</p>
+                                    <p class="stat-label">Days Active</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scan History -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="title">Scan History</h2>
+                            <p class="subtitle">View and manage your scanning history</p>
+                        </div>
+                        <div class="card-content">
+                            <!-- Search and Filters -->
+                            <div class="filters-section">
+                                <div class="search-wrapper">
+                                    <div class="search-input">
+                                        <i data-lucide="search" class="search-icon"></i>
+                                        <input type="text" placeholder="Search URLs...">
+                                    </div>
+                                </div>
+                                <div class="date-filters">
+                                    <input type="date" value="2025-04-25">
+                                    <span class="date-separator">to</span>
+                                    <input type="date" value="2025-05-25">
+                                </div>
+                                <select class="filter-select">
+                                    <option value="all">All Status</option>
+                                    <option value="safe">Safe</option>
+                                    <option value="threat">Threat</option>
+                                    <option value="warning">Warning</option>
+                                </select>
+                                <select class="filter-select">
+                                    <option value="newest">Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                </select>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="action-buttons">
+                                <button class="button secondary">
+                                    <i data-lucide="rotate-ccw"></i>
+                                    Clear History
+                                </button>
+                                <button class="button secondary">
+                                    <i data-lucide="download"></i>
+                                    Export
+                                </button>
+                                <button class="button secondary">
+                                    <i data-lucide="folder-sync"></i>
+                                    Sync History
+                                </button>
+                            </div>
+
+                            <!-- History Table -->
+                            <div class="table-container">
+                                <table class="history-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Status</th>
+                                            <th>URL</th>
+                                            <th>Date/Time</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="4" class="empty-state">
+                                                <div class="empty-content">
+                                                    <i data-lucide="search" class="empty-icon"></i>
+                                                    <p>No scan history yet</p>
+                                                    <p class="empty-subtitle">Start browsing to see your scan results here</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Pagination -->
+                            <div class="pagination">
+                                <button class="button ghost" disabled>Previous</button>
+                                <span>Page 1 of 3</span>
+                                <button class="button ghost" disabled>Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

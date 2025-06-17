@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en" class="light dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://localhost:5000 https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com;">
+    <title>ShieldScan - Date Input with Mask</title>
+    
+    <!-- Original styles -->
+    <link rel="stylesheet" href="../styles/history.css">
+    <link rel="stylesheet" href="../styles/settings.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+    
+    <!-- Flatpickr styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    
+    <!-- Custom test styles -->
+    <link rel="stylesheet" href="test-date.css">
+    
+    <!-- Libraries -->
+    <script src="../utils/lucide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://unpkg.com/imask"></script>
+    
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            width: 100%;
+        }
+        
+        .app {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 50%, #4f46e5 100%);
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 2rem 0;
+            width: 100%;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .history-card {
+            margin-bottom: 2rem;
+            width: 100%;
+            background: var(--settings-card-bg);
+            backdrop-filter: var(--settings-backdrop-filter);
+            border-radius: var(--settings-card-radius);
+            box-shadow: var(--settings-card-shadow);
+            border: 1px solid var(--settings-card-border-color);
+        }
+        
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--settings-card-border-color);
+        }
+        
+        .card-header h2 {
+            margin: 0 0 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--settings-text-primary);
+        }
+        
+        .card-header p {
+            margin: 0;
+            color: var(--settings-text-secondary);
+            font-size: 0.875rem;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .filters-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: center;
+        }
+        
+        .example-section {
+            margin-bottom: 2rem;
+        }
+        
+        .example-section h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--settings-text-primary);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .typed-value {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(124, 58, 237, 0.1);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .typed-value span {
+            font-weight: 600;
+            color: #7c3aed;
+        }
+        
+        /* Button styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            background: #f3f4f6;
+            color: #1f2937;
+            border: 1px solid #e5e7eb;
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn:hover {
+            background: #e5e7eb;
+        }
+        
+        .btn-primary {
+            background: #7c3aed;
+            color: white;
+            border-color: #7c3aed;
+        }
+        
+        .btn-primary:hover {
+            background: #6d28d9;
+        }
+        
+        .dark .btn {
+            background: #374151;
+            color: #f9fafb;
+            border-color: #4b5563;
+        }
+        
+        .dark .btn:hover {
+            background: #4b5563;
+        }
+        
+        .dark .btn-primary {
+            background: #7c3aed;
+            border-color: #7c3aed;
+        }
+        
+        .dark .btn-primary:hover {
+            background: #6d28d9;
+        }
+        
+        .btn-row {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .date-display {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: var(--settings-text-secondary);
+        }
+        
+        .date-display strong {
+            color: var(--settings-text-primary);
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 2rem;
+            color: white;
+            width: 100%;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        /* Focus indicator for the current field segment */
+        .masked-highlight {
+            background-color: rgba(124, 58, 237, 0.15);
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <div class="header">
+            <div class="container">
+                <h1>ShieldScan - Date Input with Mask</h1>
+            </div>
+        </div>
+        
+        <main class="main-content">
+            <div class="container">
+                <div class="history-card">
+                    <div class="card-header">
+                        <h2>Fixed Format Date Input</h2>
+                        <p>Users can only edit the numbers, not the format (DD/MM/YYYY)</p>
+                    </div>
+                    
+                    <div class="card-content">
+                        <div class="example-section">
+                            <h3>Demo: Masked Date Input</h3>
+                            <div class="filters-row">
+                                <div class="date-range">
+                                    <input type="text" id="startDate" placeholder="DD/MM/YYYY">
+                                    <span>to</span>
+                                    <input type="text" id="endDate" placeholder="DD/MM/YYYY">
+                                </div>
+                                <button id="applyFilters" class="btn btn-primary">Apply</button>
+                            </div>
+                            
+                            <div class="date-display">
+                                Selected range: <strong id="selectedDateRange">Last 30 days</strong>
+                            </div>
+                            
+                            <div class="typed-value">
+                                <p>Key benefits of masked input:</p>
+                                <ul>
+                                    <li><span>Fixed format</span> - Users see the format "DD/MM/YYYY" with slashes already in place</li>
+                                    <li><span>Guided input</span> - Cursor automatically advances to the next field</li>
+                                    <li><span>Visual cues</span> - The current active segment gets highlighted</li>
+                                    <li><span>Error prevention</span> - Only valid numbers allowed in each position</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="btn-row">
+                                <button id="setLastWeek" class="btn">Last 7 Days</button>
+                                <button id="setLastMonth" class="btn">Last 30 Days</button>
+                                <button id="setLastQuarter" class="btn">Last Quarter</button>
+                            </div>
+                        </div>
+                        
+                        <div class="example-section">
+                            <h3>Features</h3>
+                            <ul>
+                                <li>Fixed format with slashes already visible</li>
+                                <li>Auto-skip to next field when current field is complete</li>
+                                <li>Day input limited to 01-31</li>
+                                <li>Month input limited to 01-12</li>
+                                <li>Year input limited to reasonable range</li>
+                                <li>Blue text selection highlight during editing</li>
+                                <li>Full keyboard navigation (Tab between fields)</li>
+                                <li>Date picker calendar still available on click</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get today's date and 30 days ago
+        const today = new Date();
+        const thirtyDaysAgo = new Date();
+        thirtyDaysAgo.setDate(today.getDate() - 30);
+        
+        // Format dates for display and initialization
+        const formatDateForDisplay = (date) => {
+            return date.toLocaleDateString('en-GB', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+        };
+        
+        // Initialize Flatpickr instances
+        const fpStartDate = flatpickr("#startDate", {
+            dateFormat: "d/m/Y",
+            defaultDate: thirtyDaysAgo,
+            maxDate: "today",
+            allowInput: true,
+            clickOpens: true,
+            disableMobile: true,
+            onChange: function(selectedDates) {
+                if (selectedDates[0]) {
+                    // Update mask value when date is selected from calendar
+                    startDateMask.value = formatDateForDisplay(selectedDates[0]);
+                    
+                    // Update end date's minimum date
+                    fpEndDate.set('minDate', selectedDates[0]);
+                    updateDisplayedDateRange();
+                }
+            }
+        });
+        
+        const fpEndDate = flatpickr("#endDate", {
+            dateFormat: "d/m/Y",
+            defaultDate: today,
+            maxDate: "today",
+            allowInput: true,
+            clickOpens: true,
+            disableMobile: true,
+            onChange: function(selectedDates) {
+                if (selectedDates[0]) {
+                    // Update mask value when date is selected from calendar
+                    endDateMask.value = formatDateForDisplay(selectedDates[0]);
+                    updateDisplayedDateRange();
+                }
+            }
+        });
+        
+        // Set the initial minimum date for the end date picker
+        fpEndDate.set('minDate', thirtyDaysAgo);
+        
+        // Create date masks
+        const startDateMask = IMask(document.getElementById('startDate'), {
+            mask: Date,
+            pattern: 'd/`m/`Y',
+            blocks: {
+                d: {
+                    mask: IMask.MaskedRange,
+                    from: 1,
+                    to: 31,
+                    maxLength: 2
+                },
+                m: {
+                    mask: IMask.MaskedRange,
+                    from: 1,
+                    to: 12,
+                    maxLength: 2
+                },
+                Y: {
+                    mask: IMask.MaskedRange,
+                    from: 1900,
+                    to: 2100,
+                    maxLength: 4
+                }
+            },
+            lazy: false,
+            autofix: true,
+            format: function(date) {
+                return formatDateForDisplay(date);
+            },
+            parse: function(str) {
+                const parts = str.split('/');
+                if (parts.length !== 3) return null;
+                
+                const day = parseInt(parts[0]);
+                const month = parseInt(parts[1]) - 1; // Month is 0-indexed in JS Date
+                const year = parseInt(parts[2]);
+                
+                return new Date(year, month, day);
+            }
+        });
+        
+        const endDateMask = IMask(document.getElementById('endDate'), {
+            mask: Date,
+            pattern: 'd/`m/`Y',
+            blocks: {
+                d: {
+                    mask: IMask.MaskedRange,
+                    from: 1,
+                    to: 31,
+                    maxLength: 2
+                },
+                m: {
+                    mask: IMask.MaskedRange,
+                    from: 1,
+                    to: 12,
+                    maxLength: 2
+                },
+                Y: {
+                    mask: IMask.MaskedRange,
+                    from: 1900,
+                    to: 2100,
+                    maxLength: 4
+                }
+            },
+            lazy: false,
+            autofix: true,
+            format: function(date) {
+                return formatDateForDisplay(date);
+            },
+            parse: function(str) {
+                const parts = str.split('/');
+                if (parts.length !== 3) return null;
+                
+                const day = parseInt(parts[0]);
+                const month = parseInt(parts[1]) - 1; // Month is 0-indexed in JS Date
+                const year = parseInt(parts[2]);
+                
+                return new Date(year, month, day);
+            }
+        });
+        
+        // Set initial values
+        startDateMask.value = formatDateForDisplay(thirtyDaysAgo);
+        endDateMask.value = formatDateForDisplay(today);
+        
+        // Link mask changes back to Flatpickr
+        startDateMask.on('accept', function() {
+            if (startDateMask.value && startDateMask.unmaskedValue.length === 8) {
+                const dateParts = startDateMask.value.split('/');
+                const parsedDate = new Date(
+                    parseInt(dateParts[2]), 
+                    parseInt(dateParts[1]) - 1, 
+                    parseInt(dateParts[0])
+                );
+                
+                if (!isNaN(parsedDate.getTime())) {
+                    fpStartDate.setDate(parsedDate, true);
+                }
+            }
+        });
+        
+        endDateMask.on('accept', function() {
+            if (endDateMask.value && endDateMask.unmaskedValue.length === 8) {
+                const dateParts = endDateMask.value.split('/');
+                const parsedDate = new Date(
+                    parseInt(dateParts[2]), 
+                    parseInt(dateParts[1]) - 1, 
+                    parseInt(dateParts[0])
+                );
+                
+                if (!isNaN(parsedDate.getTime())) {
+                    fpEndDate.setDate(parsedDate, true);
+                }
+            }
+        });
+        
+        // Function to update the displayed date range
+        function updateDisplayedDateRange() {
+            const startDate = fpStartDate.selectedDates[0];
+            const endDate = fpEndDate.selectedDates[0];
+            
+            if (startDate && endDate) {
+                document.getElementById('selectedDateRange').textContent = 
+                    `${formatDateForDisplay(startDate)} to ${formatDateForDisplay(endDate)}`;
+            }
+        }
+        
+        // Initialize display
+        updateDisplayedDateRange();
+        
+        // Event listeners for quick date buttons
+        document.getElementById('setLastWeek').addEventListener('click', function() {
+            const end = new Date();
+            const start = new Date();
+            start.setDate(end.getDate() - 7);
+            
+            fpStartDate.setDate(start);
+            fpEndDate.setDate(end);
+            
+            // Update masks
+            startDateMask.value = formatDateForDisplay(start);
+            endDateMask.value = formatDateForDisplay(end);
+        });
+        
+        document.getElementById('setLastMonth').addEventListener('click', function() {
+            const end = new Date();
+            const start = new Date();
+            start.setDate(end.getDate() - 30);
+            
+            fpStartDate.setDate(start);
+            fpEndDate.setDate(end);
+            
+            // Update masks
+            startDateMask.value = formatDateForDisplay(start);
+            endDateMask.value = formatDateForDisplay(end);
+        });
+        
+        document.getElementById('setLastQuarter').addEventListener('click', function() {
+            const end = new Date();
+            const start = new Date();
+            start.setDate(end.getDate() - 90);
+            
+            fpStartDate.setDate(start);
+            fpEndDate.setDate(end);
+            
+            // Update masks
+            startDateMask.value = formatDateForDisplay(start);
+            endDateMask.value = formatDateForDisplay(end);
+        });
+        
+        // Apply filters button
+        document.getElementById('applyFilters').addEventListener('click', function() {
+            alert('Filters applied with date range: ' + document.getElementById('selectedDateRange').textContent);
+        });
+        
+        // Add visual cue for current editing segment
+        const dateInputs = document.querySelectorAll('.date-range input');
+        dateInputs.forEach(input => {
+            input.addEventListener('select', function() {
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                
+                // If user is selecting one of the segments, add highlight class
+                if (end - start > 0 && end - start <= 4) {
+                    this.classList.add('masked-highlight');
+                }
+            });
+            
+            input.addEventListener('blur', function() {
+                this.classList.remove('masked-highlight');
+            });
+        });
+    });
+    </script>
+</body>
+</html> 

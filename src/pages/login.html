@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShieldScan - Login</title>
+    <link rel="stylesheet" href="../styles/login.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <!-- Top header -->
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="../../assets/images/icon48.png" alt="Logo" class="logo-image">
+            <span class="logo-text">ShieldScan</span>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <div class="container">
+        <div class="auth-card" id="loginCard">
+            <h2 class="card-title">Sign In</h2>
+            <p class="card-subtitle">Sign in to access your dashboard and sync your protection across devices</p>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="text-input" placeholder="Your email">
+                <div class="error-message" id="emailError"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-input-container">
+                    <input type="password" id="password" class="text-input" placeholder="Your password">
+                    <button class="toggle-password" id="togglePassword">
+                        <i class="material-icons">visibility_off</i>
+                    </button>
+                </div>
+                <div class="error-message" id="passwordError"></div>
+            </div>
+            
+            <div class="form-options">
+                <div class="remember-me">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe">Remember me</label>
+                </div>
+                <a href="#" class="forgot-password" id="forgotPasswordLink">Forgot Password?</a>
+            </div>
+            
+            <button id="loginBtn" class="auth-button">Sign In</button>
+            
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="#" id="registerLink">Sign Up</a></p>
+            </div>
+        </div>
+        
+        <div class="auth-card" id="registerCard" style="display: none;">
+            <h2 class="card-title">Create Account</h2>
+            <p class="card-subtitle">Create an account to sync your protection across devices</p>
+            
+            <div class="form-group">
+                <label for="registerEmail">Email</label>
+                <input type="email" id="registerEmail" class="text-input" placeholder="Your email">
+                <div class="error-message" id="registerEmailError"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="registerPassword">Password</label>
+                <div class="password-input-container">
+                    <input type="password" id="registerPassword" class="text-input" placeholder="Create a password">
+                    <button class="toggle-password" id="toggleRegisterPassword">
+                        <i class="material-icons">visibility_off</i>
+                    </button>
+                </div>
+                <div class="error-message" id="registerPasswordError"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" class="text-input" placeholder="Confirm your password">
+                <div class="error-message" id="confirmPasswordError"></div>
+            </div>
+            
+            <div class="terms-conditions">
+                <input type="checkbox" id="agreeTerms">
+                <label for="agreeTerms">I agree to the <a href="#" id="termsLink">Terms of Service</a> and <a href="#" id="privacyLink">Privacy Policy</a></label>
+                <div class="error-message" id="termsError"></div>
+            </div>
+            
+            <button id="registerBtn" class="auth-button">Create Account</button>
+            
+            <div class="auth-footer">
+                <p>Already have an account? <a href="#" id="loginLink">Sign In</a></p>
+            </div>
+        </div>
+        
+        <div class="auth-card" id="forgotPasswordCard" style="display: none;">
+            <h2 class="card-title">Reset Password</h2>
+            <p class="card-subtitle">Enter your email to receive a password reset link</p>
+            
+            <div class="form-group">
+                <label for="resetEmail">Email</label>
+                <input type="email" id="resetEmail" class="text-input" placeholder="Your email">
+                <div class="error-message" id="resetEmailError"></div>
+            </div>
+            
+            <button id="resetBtn" class="auth-button">Send Reset Link</button>
+            
+            <div class="auth-footer">
+                <p><a href="#" id="backToLoginLink">Back to Sign In</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

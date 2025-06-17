@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShieldScan - Phishing Detection</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="header-title">
+            <img src="../../assets/images/icon48.png" alt="Logo" class="logo">
+            <h1>ShieldScan</h1>
+        </div>
+        <div class="header-actions">
+            <!-- Only settings button -->
+            <button class="icon-button" id="settingsBtn">
+                <i class="material-icons">settings</i>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card status-card">
+            <div class="status-info">
+                <h3 class="status-text">Current page status:</h3>
+                <p class="url-display" id="currentUrl">Checking...</p>
+            </div>
+            <div class="status-indicator neutral" id="statusIndicator">
+                <i class="material-icons" id="statusIcon">help</i>
+            </div>
+        </div>
+
+        <div class="card scan-card">
+            <h3 class="card-title">
+                <i class="material-icons">search</i>
+                Scan URL
+            </h3>
+            <div class="scan-actions">
+                <button class="scan-button primary-scan" id="quickScanBtn">
+                    <i class="material-icons">security</i>
+                    Scan Current Page
+                </button>
+                <button class="toggle-custom-scan" id="toggleCustomScanBtn">
+                    <i class="material-icons">keyboard_arrow_down</i>
+                </button>
+            </div>
+            
+            <div class="custom-scan-form" id="customScanForm">
+                <div class="scan-form">
+                    <input type="text" class="url-input" id="urlInput" placeholder="Enter URL to check">
+                    <button class="scan-button" id="scanBtn">
+                        <i class="material-icons">security</i>
+                        Scan
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 class="card-title">
+                <i class="material-icons">bar_chart</i>
+                Protection Statistics
+            </h3>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-value" id="sitesScanned">0</div>
+                    <div class="stat-label">Sites Scanned</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="threatsDetected">0</div>
+                    <div class="stat-label">Threats Detected</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="daysActive">0</div>
+                    <div class="stat-label">Days Active</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="result-card" id="resultCard">
+            <div class="result-circle" id="resultCircle">
+                <i class="material-icons" id="resultIcon">check_circle</i>
+            </div>
+            <h3 class="result-title" id="resultTitle">Analysis in progress...</h3>
+            <p class="result-description" id="resultDescription">
+                Please wait while we analyze this URL.
+            </p>
+            <div class="result-actions">
+                <button class="result-button primary" id="continueBtn">Continue</button>
+                <button class="result-button secondary" id="viewDetailsBtn">View Details</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

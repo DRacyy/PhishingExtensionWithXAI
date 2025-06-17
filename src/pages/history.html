@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://localhost:5000; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline';">
+    <title>ShieldScan - History</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../styles/history.css">
+    <script src="../utils/lucide.js"></script>
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-container">
+                <div class="header-content">
+                    <div class="logo-section">
+                        <div class="logo-wrapper">
+                            <img src="../../assets/images/icon48.png" alt="ShieldScan Logo" class="logo">
+                            <span class="logo-text">ShieldScan</span>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <a href="settings.html" class="nav-link">Settings</a>
+                        <a href="history.html" class="nav-link active">History</a>
+                        <button class="theme-toggle">
+                            <i data-lucide="moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="container">
+                <!-- Sign in message -->
+                <button class="sync-prompt">
+                    <i data-lucide="info"></i>
+                    Sign in to sync history across devices
+                </button>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper blue">
+                            <i data-lucide="search"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="sitesScanned">0</h3>
+                            <p>Sites Scanned</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper red">
+                            <i data-lucide="alert-triangle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="threatsDetected">0</h3>
+                            <p>Threats Detected</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper green">
+                            <i data-lucide="shield-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="safeUrls">0</h3>
+                            <p>Safe URLs</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper green">
+                            <i data-lucide="calendar"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="daysActive">0</h3>
+                            <p>Days Active</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- History Card -->
+                <div class="history-card">
+                    <div class="card-header">
+                        <h2>Scan History</h2>
+                        <p>View and manage your scanning history</p>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="filters-row">
+                            <div class="search-box">
+                                <i data-lucide="search"></i>
+                                <input type="text" id="searchInput" placeholder="Search URLs...">
+                            </div>
+                            
+                            <div class="date-range">
+                                <div class="date-input-wrapper">
+                                    <input type="date" id="startDate">
+                                </div>
+                                <span>to</span>
+                                <div class="date-input-wrapper">
+                                    <input type="date" id="endDate">
+                                </div>
+                            </div>
+
+                            <div class="filter-selects">
+                                <select id="statusFilter">
+                                    <option value="all">All Status</option>
+                                    <option value="safe">Safe</option>
+                                    <option value="threat">Threats</option>
+                                </select>
+                                <select id="sortBy">
+                                    <option value="newest">Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                    <option value="url">URL (A-Z)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button id="clearHistoryBtn" class="action-btn">
+                                <i data-lucide="rotate-ccw"></i>
+                                Clear History
+                            </button>
+                            <button id="exportBtn" class="action-btn">
+                                <i data-lucide="download"></i>
+                                Export
+                            </button>
+                            <button id="syncNowBtn" class="action-btn">
+                                <i data-lucide="refresh-cw"></i>
+                                Sync Now
+                            </button>
+                        </div>
+
+                        <div class="history-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>URL</th>
+                                        <th>Date/Time</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="historyTableBody">
+                                    <!-- Table content will be dynamically inserted here -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="pagination">
+                            <button id="prevPageBtn" class="page-btn" disabled>Previous</button>
+                            <span id="pageIndicator">Page 1 of 1</span>
+                            <button id="nextPageBtn" class="page-btn">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="history.js"></script>
+</body>
+</html>

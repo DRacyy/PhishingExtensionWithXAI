@@ -1,0 +1,439 @@
+/* Complete history.css with authentication UI styling */
+:root {
+    --primary-color: #6200EA;
+    --primary-light: #B388FF;
+    --danger-color: #D32F2F;
+    --warning-color: #FFA000;
+    --success-color: #388E3C;
+    --background-color: #F5F5F5;
+    --surface-color: #FFFFFF;
+    --text-color: #212121;
+    --secondary-text-color: #757575;
+    --border-color: #E0E0E0;
+    --border-radius: 4px;
+}
+
+body {
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-width: 600px;
+    min-height: 100vh;
+}
+
+/* Header styling - updated to match settings page height */
+.main-header {
+    background-color: var(--primary-color);
+    color: white;
+    height: 48px; /* Fixed height to match settings page */
+    display: flex;
+    align-items: center;
+    padding: 0 20px; /* Adjusted padding */
+}
+
+/* Logo styling to match settings page */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-radius: 50%;
+    padding: 4px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Navigation tabs */
+.tabs-container {
+    background-color: white;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tabs {
+    display: flex;
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 1200px;
+}
+
+.tab {
+    padding: 12px 20px;
+    color: var(--secondary-text-color);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.tab:hover {
+    color: var(--text-color);
+}
+
+.tab.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+/* Auth status bar */
+.auth-status-bar {
+    background-color: var(--background-color);
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 14px;
+}
+
+/* Auth status indicator */
+.auth-status {
+    display: flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.auth-status.signed-in {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.auth-status.signed-out {
+    background-color: var(--secondary-text-color);
+    color: white;
+}
+
+.auth-status i {
+    margin-right: 6px;
+    font-size: 16px;
+}
+
+/* Login button */
+.login-button {
+    display: flex;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    padding: 4px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-right: 8px;
+    transition: background-color 0.2s;
+}
+
+.login-button:hover {
+    background-color: #5000D0;
+}
+
+.login-button i {
+    font-size: 16px;
+    margin-right: 4px;
+}
+
+/* Main container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.content-card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    color: var(--primary-color);
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+/* History buttons */
+.history-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.history-button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    background-color: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.history-button:hover {
+    background-color: #e0e0e0;
+}
+
+.history-button i {
+    font-size: 16px;
+}
+
+/* History table */
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.history-table th {
+    text-align: left;
+    padding: 8px 6px;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.history-table td {
+    padding: 8px 6px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* Status indicator (colored dots) */
+.status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+
+.status-indicator.safe {
+    background-color: var(--success-color);
+}
+
+.status-indicator.danger {
+    background-color: var(--danger-color);
+}
+
+/* URL cell styling */
+.url-cell {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Action cell styling */
+.action-cell {
+    text-align: right;
+}
+
+.action-button {
+    background: none;
+    border: none;
+    color: var(--secondary-text-color);
+    cursor: pointer;
+    padding: 2px;
+}
+
+.action-button:hover {
+    color: var(--text-color);
+}
+
+/* Empty history message */
+.empty-history {
+    text-align: center;
+    padding: 16px 0;
+    color: var(--secondary-text-color);
+    font-size: 14px;
+    display: none;
+}
+
+.empty-history.visible {
+    display: block;
+}
+
+/* Pagination controls */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.page-button {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-button:disabled {
+    color: #bdbdbd;
+    cursor: default;
+}
+
+#pageIndicator {
+    font-size: 13px;
+    color: var(--secondary-text-color);
+}
+
+/* Stats display */
+.stats-display {
+    font-size: 14px;
+}
+
+.stats-display p {
+    margin: 8px 0;
+}
+
+.stat-number {
+    font-weight: bold;
+}
+
+/* Sync animation */
+.rotating {
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Toast notifications */
+.toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-size: 14px;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+.toast-success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.toast-error {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.toast-info {
+    background-color: #1976D2;
+    color: white;
+}
+
+.toast-warning {
+    background-color: var(--warning-color);
+    color: white;
+}
+
+.toast-hide {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, 10px); }
+    10% { opacity: 1; transform: translate(-50%, 0); }
+    90% { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, 10px); }
+}
+
+/* User email in status */
+.user-email {
+    font-weight: 500;
+}
+
+/* Search and filter controls */
+.search-filter-container {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 6px 12px;
+}
+
+.search-box i {
+    color: var(--secondary-text-color);
+    margin-right: 8px;
+}
+
+.search-box input {
+    border: none;
+    background: none;
+    width: 100%;
+    font-size: 14px;
+    color: var(--text-color);
+    outline: none;
+}
+
+.filter-controls {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.date-range {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.date-input {
+    padding: 6px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--text-color);
+}
+
+.filter-select {
+    padding: 6px 24px 6px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--text-color);
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.filter-select:hover {
+    background-color: #e0e0e0;
+}

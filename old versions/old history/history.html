@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShieldScan - History</title>
+    <link rel="stylesheet" href="history.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <!-- Top header -->
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="images/icon48.png" alt="Logo" class="logo-image">
+            <span class="logo-text">ShieldScan</span>
+        </div>
+    </header>
+
+    <!-- Navigation tabs -->
+    <div class="tabs-container">
+        <div class="tabs">
+            <a href="settings.html" class="tab">Settings</a>
+            <a href="history.html" class="tab active">History</a>
+        </div>
+    </div>
+    
+    <!-- Auth Status Bar -->
+    <div class="auth-status-bar" id="authStatusBar">
+        <div class="auth-status signed-out" id="authStatus">
+            <i class="material-icons">info</i>
+            <span>Sign in to sync history across devices</span>
+        </div>
+        <button class="login-button" id="historyLoginBtn">
+            <i class="material-icons">person</i>
+            Sign In
+        </button>
+    </div>
+
+    <!-- Main content -->
+    <div class="container">
+        <!-- History section -->
+        <div class="content-card">
+            <h2 class="card-title">Scan History</h2>
+            
+            <!-- Add search and filter controls -->
+            <div class="search-filter-container">
+                <div class="search-box">
+                    <i class="material-icons">search</i>
+                    <input type="text" id="searchInput" placeholder="Search URLs...">
+                </div>
+                
+                <div class="filter-controls">
+                    <div class="date-range">
+                        <input type="date" id="startDate" class="date-input">
+                        <span>to</span>
+                        <input type="date" id="endDate" class="date-input">
+                    </div>
+                    
+                    <select id="statusFilter" class="filter-select">
+                        <option value="all">All Status</option>
+                        <option value="safe">Safe</option>
+                        <option value="threat">Threats</option>
+                    </select>
+                    
+                    <select id="sortBy" class="filter-select">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="url">URL (A-Z)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="history-buttons">
+                <button id="clearHistoryBtn" class="history-button">
+                    <i class="material-icons">delete</i>
+                    Clear History
+                </button>
+                <button id="exportHistoryBtn" class="history-button">
+                    <i class="material-icons">file_download</i>
+                    Export
+                </button>
+                <!-- Sync button that appears for authenticated users -->
+                <button id="syncHistoryBtn" class="history-button" style="display: none;">
+                    <i class="material-icons">sync</i>
+                    Sync History
+                </button>
+            </div>
+            
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>URL</th>
+                        <th>Date/Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="historyTableBody">
+                    <!-- History items will be added dynamically via JavaScript -->
+                </tbody>
+            </table>
+            
+            <div id="emptyHistory" class="empty-history">
+                <p>No scan history yet</p>
+            </div>
+            
+            <div class="pagination">
+                <button id="prevPageBtn" class="page-button" disabled>
+                    <i class="material-icons">chevron_left</i>
+                </button>
+                <span id="pageIndicator">Page 1 of 1</span>
+                <button id="nextPageBtn" class="page-button" disabled>
+                    <i class="material-icons">chevron_right</i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Statistics section -->
+        <div class="content-card">
+            <h2 class="card-title">Statistics</h2>
+            <div class="stats-display">
+                <p><span id="sitesScanned" class="stat-number">0</span> Sites Scanned</p>
+                <p><span id="threatsDetected" class="stat-number">0</span> Threats Detected</p>
+                <p><span id="daysActive" class="stat-number">0</span> Days Active</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="history.js"></script>
+</body>
+</html>

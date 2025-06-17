@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://localhost:5000; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline';">
+    <title>ShieldScan - Settings</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <script src="lucide.js"></script>
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-container">
+                <div class="header-content">
+                    <div class="logo-wrapper">
+                        <img src="images/icon48.png" alt="ShieldScan Logo" class="logo">
+                        <span class="logo-text">ShieldScan</span>
+                    </div>
+                    <div class="header-actions">
+                        <a href="settings.html" class="nav-link active">Settings</a>
+                        <a href="history.html" class="nav-link">History</a>
+                        <button class="theme-toggle">
+                            <i data-lucide="moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="settings-page layout-container">
+                <!-- Tab navigation -->
+                <div class="settings-tabs">
+                    <button class="settings-tab active" data-tab="general">General</button>
+                    <button class="settings-tab" data-tab="account">Account</button>
+                    <button class="settings-tab" data-tab="security">Security</button>
+                    <button class="settings-tab" data-tab="advanced">Advanced</button>
+                </div>
+
+                <!-- Settings container -->
+                <div class="settings-container">
+                    <!-- General tab content -->
+                    <div class="settings-tab-content active" id="general">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="settings-section-header">
+                                    <div class="icon-wrapper purple">
+                                        <i data-lucide="settings"></i>
+                                    </div>
+                                    <div>
+                                        <h2 class="settings-title">General Settings</h2>
+                                        <p class="settings-subtitle">Customize your ShieldScan experience</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="settings-feature-list">
+                                    <div class="settings-feature-item">
+                                        <div class="settings-feature-info">
+                                            <div class="icon-wrapper blue">
+                                                <i data-lucide="bell"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="settings-feature-title">Notifications</h3>
+                                                <p class="settings-feature-description">Receive alerts when threats are detected</p>
+                                            </div>
+                                        </div>
+                                        <label class="settings-switch">
+                                            <input type="checkbox" checked id="notificationsToggle">
+                                            <span class="settings-slider"></span>
+                                        </label>
+                                    </div>
+
+                                    <div class="settings-feature-item">
+                                        <div class="settings-feature-info">
+                                            <div class="icon-wrapper green">
+                                                <i data-lucide="zap"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="settings-feature-title">Real-time Protection</h3>
+                                                <p class="settings-feature-description">Automatically scan sites as you browse</p>
+                                            </div>
+                                        </div>
+                                        <label class="settings-switch">
+                                            <input type="checkbox" checked id="realTimeToggle">
+                                            <span class="settings-slider"></span>
+                                        </label>
+                                    </div>
+
+                                    <div class="settings-feature-item">
+                                        <div class="settings-feature-info">
+                                            <div class="icon-wrapper orange">
+                                                <i data-lucide="cloud"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="settings-feature-title">Cloud Sync</h3>
+                                                <p class="settings-feature-description">Sync your scan history across devices</p>
+                                            </div>
+                                        </div>
+                                        <label class="settings-switch">
+                                            <input type="checkbox" id="cloudSyncToggle">
+                                            <span class="settings-slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account tab content -->
+                    <div class="settings-tab-content" id="account">
+                        <!-- Account content here -->
+                    </div>
+
+                    <!-- Security tab content -->
+                    <div class="settings-tab-content" id="security">
+                        <!-- Security content here -->
+                    </div>
+
+                    <!-- Advanced tab content -->
+                    <div class="settings-tab-content" id="advanced">
+                        <!-- Advanced content here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Save changes popup -->
+            <div class="settings-save-popup" id="savePopup">
+                <div class="settings-button-group">
+                    <button id="discardBtn" class="settings-button ghost">Discard</button>
+                    <button id="saveBtn" class="settings-button secondary">Save Changes</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html> 

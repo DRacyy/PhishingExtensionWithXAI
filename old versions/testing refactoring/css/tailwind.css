@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS Variables for theming */
+:root {
+  --primary-purple: #7c3aed;
+  --primary-indigo: #4f46e5;
+  --success-green: #10b981;
+  --warning-orange: #f59e0b;
+  --danger-red: #ef4444;
+  --info-blue: #3b82f6;
+}
+
+/* Dark theme overrides - minimal, as most will be handled by Tailwind dark: variants */
+.dark {
+  color-scheme: dark;
+}
+
+/* Custom components that are difficult to achieve with just utilities */
+@layer components {
+  /* Rotating animation for sync buttons */
+  .rotating {
+    animation: rotate 1s linear infinite;
+  }
+  
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Save popup animations */
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes slideDown {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(50px); }
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out forwards;
+  }
+  
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out forwards;
+  }
+
+  /* Toggle switch component */
+  .switch {
+    @apply relative inline-block w-11 h-6;
+  }
+  
+  .switch input {
+    @apply opacity-0 w-0 h-0;
+  }
+  
+  .slider {
+    @apply absolute cursor-pointer inset-0 bg-gray-300 transition-all duration-300 rounded-full;
+  }
+  
+  .slider:before {
+    @apply absolute content-[''] h-5 w-5 left-0.5 bottom-0.5 bg-white transition-all duration-300 rounded-full;
+  }
+  
+  input:checked + .slider {
+    @apply bg-purple-600;
+  }
+  
+  input:checked + .slider:before {
+    @apply transform translate-x-5;
+  }
+}
+
+/* Any essential styles that can't be achieved with utility classes */ 

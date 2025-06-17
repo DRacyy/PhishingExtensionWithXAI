@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class=""> <!-- Start with light mode, can be toggled to "dark" -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowbite Datepicker Test</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <script>
+        // Optional: Add a toggle for dark mode for testing
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+        }
+    </script>
+    <style>
+        body {
+            padding: 20px;
+            /* Basic styling for centering and visibility */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* Align to top */
+            min-height: 100vh;
+            background-color: #fff; /* Default light bg */
+            margin-top: 20px;
+        }
+        html.dark body {
+            background-color: #111827; /* Dark background similar to history page's dark mode */
+        }
+        .theme-toggle-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            background-color: #3b82f6; /* bg-blue-500 */
+            color: white;
+            font-size: 0.875rem; /* text-sm */
+            border: none;
+        }
+        html.dark .theme-toggle-button {
+            background-color: #1f2937; /* bg-gray-800 */
+            color: #d1d5db; /* text-gray-300 */
+        }
+
+        .content-container {
+            background-color: white; /* Light mode card bg */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: auto;
+            max-width: 500px; /* Max width for the container */
+        }
+        html.dark .content-container {
+            background-color: #1f2937; /* Dark mode card bg, similar to history.css .history-card */
+            border: 1px solid #374151; /* Equivalent to dark:border-gray-700 */
+        }
+        .to-separator {
+            margin-left: 0.75rem; /* mx-3 equivalent */
+            margin-right: 0.75rem;
+            color: #4b5563; /* text-gray-600 */
+            align-self: center; /* Vertically center with inputs */
+        }
+        html.dark .to-separator {
+            color: #d1d5db; /* text-gray-300 */
+        }
+    </style>
+</head>
+<body>
+
+    <button onclick="toggleTheme()" class="theme-toggle-button">Toggle Dark Mode</button>
+
+    <div class="content-container mt-12">
+        <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Flowbite Date Range Picker</h2>
+        <div date-rangepicker class="flex items-center">
+            <div class="relative">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                    </svg>
+                </div>
+                <input name="start" type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date start" datepicker-format="dd/mm/yyyy">
+            </div>
+            <span class="to-separator">to</span>
+            <div class="relative">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                    </svg>
+                </div>
+                <input name="end" type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date end" datepicker-format="dd/mm/yyyy">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const startDateInput = document.querySelector('input[name="start"]');
+            const endDateInput = document.querySelector('input[name="end"]');
+
+            if (startDateInput && endDateInput) {
+                const logSelectedDates = () => {
+                    console.log('Start Date Selected:', startDateInput.value);
+                    console.log('End Date Selected:', endDateInput.value);
+                };
+
+                // The 'changeDate' event is often fired by vanillajs-datepicker (which Flowbite uses)
+                // when a date is picked. This is usually more reliable than the standard 'change' event for datepickers.
+                startDateInput.addEventListener('changeDate', (event) => {
+                    console.log('Start Date (changeDate event):', event.target.value);
+                    // Also log the other input's value to see the current range
+                    if (endDateInput) {
+                        console.log('Current End Date:', endDateInput.value);
+                    }
+                });
+
+                endDateInput.addEventListener('changeDate', (event) => {
+                    console.log('End Date (changeDate event):', event.target.value);
+                    // Also log the other input's value to see the current range
+                    if (startDateInput) {
+                        console.log('Current Start Date:', startDateInput.value);
+                    }
+                });
+
+                console.log('Datepicker functionality script loaded. Click on the inputs to select dates.');
+            } else {
+                console.error('Could not find start or end date input fields to attach event listeners.');
+            }
+        });
+    </script>
+</body>
+</html> 

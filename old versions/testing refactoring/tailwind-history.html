@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://localhost:5000; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline';">
+    <title>ShieldScan - History</title>
+    <link rel="stylesheet" href="css/tailwind.css">
+    <script src="lucide.js"></script>
+</head>
+<body class="bg-purple-600 dark:bg-gray-800">
+    <div class="min-h-screen bg-gradient-to-br from-purple-600 via-purple-500 to-indigo-600 dark:from-gray-800 dark:via-purple-900 dark:to-indigo-900">
+        <!-- Header -->
+        <header class="bg-white/10 backdrop-blur border-b border-white/20 py-4 px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <img src="images/icon48.png" alt="ShieldScan Logo" class="w-8 h-8">
+                        <span class="text-xl font-semibold text-white">ShieldScan</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <a href="settings.html" class="text-white/80 hover:bg-white/10 px-4 py-2 rounded-lg text-sm transition-colors">Settings</a>
+                        <a href="history.html" class="bg-white/20 text-white px-4 py-2 rounded-lg text-sm transition-colors">History</a>
+                        <button class="bg-transparent border-none text-white p-2 rounded-lg flex items-center justify-center hover:bg-white/10">
+                            <i data-lucide="moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="p-8">
+            <div class="max-w-7xl mx-auto">
+                <!-- Sign in message -->
+                <button class="inline-flex items-center gap-2 bg-white/10 border-none rounded-full py-2 px-4 text-white text-sm mb-6 hover:bg-white/15 transition-colors">
+                    <i data-lucide="info" class="w-4.5 h-4.5 text-purple-300"></i>
+                    Sign in to sync history across devices
+                </button>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <!-- Sites Scanned -->
+                    <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 flex items-center gap-4">
+                        <div class="bg-blue-500/10 dark:bg-blue-500/20 w-10 h-10 rounded-lg flex items-center justify-center text-blue-500">
+                            <i data-lucide="search"></i>
+                        </div>
+                        <div>
+                            <h3 id="sitesScanned" class="text-2xl font-semibold text-gray-800 dark:text-white m-0">0</h3>
+                            <p class="text-gray-500 dark:text-gray-300 text-sm m-0">Sites Scanned</p>
+                        </div>
+                    </div>
+
+                    <!-- Threats Detected -->
+                    <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 flex items-center gap-4">
+                        <div class="bg-red-500/10 dark:bg-red-500/20 w-10 h-10 rounded-lg flex items-center justify-center text-red-500">
+                            <i data-lucide="alert-triangle"></i>
+                        </div>
+                        <div>
+                            <h3 id="threatsDetected" class="text-2xl font-semibold text-gray-800 dark:text-white m-0">0</h3>
+                            <p class="text-gray-500 dark:text-gray-300 text-sm m-0">Threats Detected</p>
+                        </div>
+                    </div>
+
+                    <!-- Days Active -->
+                    <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 flex items-center gap-4">
+                        <div class="bg-green-500/10 dark:bg-green-500/20 w-10 h-10 rounded-lg flex items-center justify-center text-green-500">
+                            <i data-lucide="calendar"></i>
+                        </div>
+                        <div>
+                            <h3 id="daysActive" class="text-2xl font-semibold text-gray-800 dark:text-white m-0">0</h3>
+                            <p class="text-gray-500 dark:text-gray-300 text-sm m-0">Days Active</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- History Card -->
+                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+                    <div class="p-6 pb-4 border-b-0">
+                        <h2 class="text-xl font-semibold text-gray-800 dark:text-white m-0">Scan History</h2>
+                        <p class="text-gray-500 dark:text-gray-300 text-sm mt-2 m-0">View and manage your scanning history</p>
+                    </div>
+
+                    <div class="p-6 pt-0">
+                        <!-- Filters row -->
+                        <div class="flex flex-col md:flex-row gap-4 mb-6 items-center h-[50px]">
+                            <div class="relative flex-1 min-w-[250px] h-full flex items-center">
+                                <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500 pointer-events-none"></i>
+                                <input type="text" id="searchInput" placeholder="Search URLs..." class="w-full h-full pl-10 pr-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-white text-sm">
+                            </div>
+                            
+                            <div class="flex items-center gap-2 h-full">
+                                <input type="date" id="startDate" class="h-full px-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-white text-sm w-[130px]">
+                                <span class="text-gray-500 dark:text-gray-300 text-sm">to</span>
+                                <input type="date" id="endDate" class="h-full px-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-white text-sm w-[130px]">
+                            </div>
+
+                            <div class="flex gap-2 h-full">
+                                <select id="statusFilter" class="h-full px-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-white text-sm min-w-[120px]">
+                                    <option value="all">All Status</option>
+                                    <option value="safe">Safe</option>
+                                    <option value="threat">Threats</option>
+                                </select>
+                                <select id="sortBy" class="h-full px-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-white text-sm min-w-[120px]">
+                                    <option value="newest">Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                    <option value="url">URL (A-Z)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Action buttons -->
+                        <div class="flex flex-col md:flex-row gap-2 mb-6 h-10">
+                            <button id="clearHistoryBtn" class="inline-flex items-center justify-center gap-2 h-full px-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-white text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                                Clear History
+                            </button>
+                            <button id="exportBtn" class="inline-flex items-center justify-center gap-2 h-full px-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-white text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                                Export
+                            </button>
+                            <button id="syncNowBtn" class="inline-flex items-center justify-center gap-2 h-full px-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-white text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                                <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                                Sync Now
+                            </button>
+                        </div>
+
+                        <!-- History table -->
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden mb-6">
+                            <table class="w-full border-collapse">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left p-4 bg-gray-50 dark:bg-gray-900/50 text-gray-600 dark:text-gray-400 font-medium text-xs uppercase tracking-wider">Status</th>
+                                        <th class="text-left p-4 bg-gray-50 dark:bg-gray-900/50 text-gray-600 dark:text-gray-400 font-medium text-xs uppercase tracking-wider">URL</th>
+                                        <th class="text-left p-4 bg-gray-50 dark:bg-gray-900/50 text-gray-600 dark:text-gray-400 font-medium text-xs uppercase tracking-wider">Date/Time</th>
+                                        <th class="text-left p-4 bg-gray-50 dark:bg-gray-900/50 text-gray-600 dark:text-gray-400 font-medium text-xs uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="historyTableBody">
+                                    <!-- Table content will be dynamically inserted here -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="flex items-center justify-center gap-4 text-gray-500 dark:text-gray-300 text-sm">
+                            <button id="prevPageBtn" class="px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-white text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>Previous</button>
+                            <span id="pageIndicator">Page 1 of 1</span>
+                            <button id="nextPageBtn" class="px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-white text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="history.js"></script>
+</body>
+</html> 

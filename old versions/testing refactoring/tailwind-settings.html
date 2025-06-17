@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://localhost:5000; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline';">
+    <title>ShieldScan - Settings</title>
+    <link rel="stylesheet" href="css/tailwind.css">
+    <script src="lucide.js"></script>
+</head>
+<body class="bg-purple-600 dark:bg-gray-800">
+    <div class="min-h-screen bg-gradient-to-br from-purple-600 via-purple-500 to-indigo-600 dark:from-gray-800 dark:via-purple-900 dark:to-indigo-900">
+        <!-- Header -->
+        <header class="bg-white/10 backdrop-blur border-b border-white/20 py-4 px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <img src="images/icon48.png" alt="ShieldScan Logo" class="w-8 h-8">
+                        <span class="text-xl font-semibold text-white">ShieldScan</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <a href="settings.html" class="bg-white/20 text-white px-4 py-2 rounded-lg text-sm transition-colors">Settings</a>
+                        <a href="history.html" class="text-white/80 hover:bg-white/10 px-4 py-2 rounded-lg text-sm transition-colors">History</a>
+                        <button id="themeToggle" class="bg-transparent border-none text-white p-2 rounded-lg flex items-center justify-center hover:bg-white/10">
+                            <i data-lucide="moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="p-8">
+            <div class="max-w-7xl mx-auto">
+                <!-- Tab navigation -->
+                <div class="flex gap-1 mb-4">
+                    <button class="px-4 py-2 rounded-lg text-sm font-medium bg-white/20 text-white" data-tab="general">General</button>
+                    <button class="px-4 py-2 rounded-lg text-sm font-medium text-white/70 hover:bg-white/10 transition-colors" data-tab="account">Account</button>
+                    <button class="px-4 py-2 rounded-lg text-sm font-medium text-white/70 hover:bg-white/10 transition-colors" data-tab="security">Security</button>
+                    <button class="px-4 py-2 rounded-lg text-sm font-medium text-white/70 hover:bg-white/10 transition-colors" data-tab="advanced">Advanced</button>
+                </div>
+
+                <!-- Settings container -->
+                <div class="flex flex-col gap-8">
+                    <!-- General tab content -->
+                    <div class="block" id="general">
+                        <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                            <div class="p-6 pb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-gradient-to-br from-purple-600 to-indigo-600 w-10 h-10 rounded-lg flex items-center justify-center text-white">
+                                        <i data-lucide="settings"></i>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-xl font-semibold text-gray-800 dark:text-white m-0">General Settings</h2>
+                                        <p class="text-gray-500 dark:text-gray-300 text-sm mt-1 m-0">Customize your ShieldScan experience</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="px-6 pb-6">
+                                <div class="flex flex-col gap-4">
+                                    <!-- Notifications -->
+                                    <div class="flex items-center justify-between p-4 rounded-lg border border-gray-200 dark:border-gray-700 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                        <div class="flex items-center gap-4">
+                                            <div class="bg-blue-500/10 dark:bg-blue-500/20 w-10 h-10 rounded-lg flex items-center justify-center text-blue-500">
+                                                <i data-lucide="bell"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-base font-medium text-gray-800 dark:text-white mb-1">Notifications</h3>
+                                                <p class="text-gray-500 dark:text-gray-300 text-sm m-0">Receive alerts when threats are detected</p>
+                                            </div>
+                                        </div>
+                                        <label class="switch">
+                                            <input type="checkbox" checked id="notificationsToggle">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+
+                                    <!-- Real-time Protection -->
+                                    <div class="flex items-center justify-between p-4 rounded-lg border border-gray-200 dark:border-gray-700 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                        <div class="flex items-center gap-4">
+                                            <div class="bg-green-500/10 dark:bg-green-500/20 w-10 h-10 rounded-lg flex items-center justify-center text-green-500">
+                                                <i data-lucide="zap"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-base font-medium text-gray-800 dark:text-white mb-1">Real-time Protection</h3>
+                                                <p class="text-gray-500 dark:text-gray-300 text-sm m-0">Automatically scan sites as you browse</p>
+                                            </div>
+                                        </div>
+                                        <label class="switch">
+                                            <input type="checkbox" checked id="autoScanToggle">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+
+                                    <!-- URL Analysis -->
+                                    <div class="flex items-center justify-between p-4 rounded-lg border border-gray-200 dark:border-gray-700 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                        <div class="flex items-center gap-4">
+                                            <div class="bg-orange-500/10 dark:bg-orange-500/20 w-10 h-10 rounded-lg flex items-center justify-center text-orange-500">
+                                                <i data-lucide="shield"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-base font-medium text-gray-800 dark:text-white mb-1">URL Analysis</h3>
+                                                <p class="text-gray-500 dark:text-gray-300 text-sm m-0">Check URLs against known threats</p>
+                                            </div>
+                                        </div>
+                                        <label class="switch">
+                                            <input type="checkbox" checked id="urlAnalysisToggle">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+
+                                    <!-- Cloud Sync -->
+                                    <div class="flex items-center justify-between p-4 rounded-lg border border-gray-200 dark:border-gray-700 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                        <div class="flex items-center gap-4">
+                                            <div class="bg-purple-500/10 dark:bg-purple-500/20 w-10 h-10 rounded-lg flex items-center justify-center text-purple-500">
+                                                <i data-lucide="cloud"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-base font-medium text-gray-800 dark:text-white mb-1">Cloud Sync</h3>
+                                                <p class="text-gray-500 dark:text-gray-300 text-sm m-0">Sync your scan history across devices</p>
+                                            </div>
+                                        </div>
+                                        <label class="switch">
+                                            <input type="checkbox" id="showCountToggle">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account tab content (hidden by default) -->
+                    <div class="hidden" id="account">
+                        <!-- Account content here -->
+                    </div>
+
+                    <!-- Security tab content (hidden by default) -->
+                    <div class="hidden" id="security">
+                        <!-- Security content here -->
+                    </div>
+
+                    <!-- Advanced tab content (hidden by default) -->
+                    <div class="hidden" id="advanced">
+                        <!-- Advanced content here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Save changes popup (hidden by default) -->
+            <div id="savePopup" class="hidden fixed bottom-6 right-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-4 z-50">
+                <div class="flex gap-3">
+                    <button id="discardBtn" class="px-4 py-2 text-gray-500 dark:text-gray-400 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors">Discard</button>
+                    <button id="saveBtn" class="px-4 py-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-white text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-800 rounded transition-colors">Save Changes</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html> 
